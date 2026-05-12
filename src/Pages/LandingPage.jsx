@@ -1,13 +1,5 @@
 import { CheckCircle, Users, HandHeart, ArrowRight } from 'lucide-react';
-import Navbar from './components/Navbar';
-import imagemGenerica from './assets/imagem_generica.jpg';
-
-const landingNavLinks = [
-  { label: 'Nossa Missão', href: '#', active: true },
-  { label: 'Causas', href: '#' },
-  { label: 'Transparência', href: '#' },
-  { label: 'Sobre', href: '#' },
-];
+import imagemGenerica from '../assets/imagem_generica.jpg';
 
 const Hero = () => (
   <section className="flex flex-col md:flex-row items-center justify-between px-8 md:px-16 py-16 md:py-20 bg-white max-w-7xl mx-auto">
@@ -64,7 +56,7 @@ const Features = () => (
       </p>
     </div>
     <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-      <FeatureCard 
+      <FeatureCard
         icon={<HandHeart className="w-6 h-6" />}
         title="Para Doadores"
         description="Descubra causas alinhadas aos seus valores com facilidade. Realize pagamentos seguros e acompanhe o destino de cada centavo através de relatórios de impacto detalhados e transparência radical."
@@ -74,7 +66,7 @@ const Features = () => (
           "Relatórios de impacto em tempo real"
         ]}
       />
-      <FeatureCard 
+      <FeatureCard
         icon={<Users className="w-6 h-6" />}
         title="Para ONGs"
         description="Amplie sua visibilidade e simplifique a captação de recursos. Crie um perfil dedicado, conte sua história com dignidade editorial e conecte-se com doadores engajados."
@@ -106,18 +98,18 @@ const HowItWorks = () => (
     </div>
     <div className="flex flex-col md:flex-row justify-center items-start gap-12 md:gap-8 relative max-w-5xl mx-auto">
       <div className="hidden md:block absolute top-7 left-[15%] right-[15%] h-[2px] bg-gray-100 -z-0"></div>
-      
-      <Step 
+
+      <Step
         number="1"
         title="Doe para o fundo de apoio"
         description="Sua contribuição vai para um fundo gerenciado por nós. Assim, podemos direcionar os recursos com mais estratégia e continuidade."
       />
-      <Step 
+      <Step
         number="2"
         title="Gestão e alocação responsável"
         description="Analisamos cada ONG, sua transparência e impacto. Gerimos o dinheiro das doações para liberar quando e onde houver maior necessidade e confiança."
       />
-      <Step 
+      <Step
         number="3"
         title="Fale com a equipe"
         description="Você não escolhe diretamente a ONG, mas pode sugerir causas, regiões ou organizações que conhece. Sua opinião orienta nossa decisão."
@@ -147,14 +139,13 @@ const CTA = () => (
 
 export default function LandingPage() {
   return (
-    <div className="min-h-screen bg-white font-sans text-gray-900 selection:bg-teal-100 selection:text-teal-900">
-      <Navbar links={landingNavLinks} />
-      <main>
+    <>
+      <main className="flex-grow">
         <Hero />
         <Features />
         <HowItWorks />
         <CTA />
       </main>
-    </div>
+    </>
   );
 }

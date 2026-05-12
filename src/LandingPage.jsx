@@ -1,0 +1,162 @@
+import React from 'react';
+import { CheckCircle, Users, HandHeart, ArrowRight } from 'lucide-react';
+
+const Navbar = () => (
+  <nav className="flex justify-between items-center py-6 px-8 md:px-16 bg-white">
+    <div className="text-2xl font-bold text-teal-800 tracking-tight">ONG<span className="text-teal-600">+</span></div>
+    <div className="hidden md:flex space-x-10 text-gray-500 font-medium text-sm">
+      <a href="#" className="text-gray-900 border-b-2 border-teal-700 pb-1">Nossa Missão</a>
+      <a href="#" className="hover:text-teal-700 transition">Causas</a>
+      <a href="#" className="hover:text-teal-700 transition">Transparência</a>
+      <a href="#" className="hover:text-teal-700 transition">Sobre</a>
+    </div>
+    <div className="md:hidden text-teal-800 font-bold">Menu</div>
+  </nav>
+);
+
+const Hero = () => (
+  <section className="flex flex-col md:flex-row items-center justify-between px-8 md:px-16 py-16 md:py-20 bg-white max-w-7xl mx-auto">
+    <div className="md:w-1/2 space-y-6">
+      <h1 className="text-5xl md:text-6xl font-extrabold text-gray-900 leading-[1.1] tracking-tight">
+        Conectando <br />
+        <span className="text-teal-700">Empatia</span> a <br />
+        Impacto Real.
+      </h1>
+      <p className="text-lg text-gray-600 max-w-md pt-2">
+        Uma plataforma curada que facilita doações para ONGs verificadas, garantindo transparência radical e conexão verdadeira com causas que importam.
+      </p>
+      <div className="pt-4">
+        <button className="flex items-center space-x-2 bg-teal-700 text-white px-6 py-3 rounded-full font-medium hover:bg-teal-800 transition shadow-sm">
+          <span>Explorar Causas</span>
+          <ArrowRight className="w-4 h-4" />
+        </button>
+      </div>
+    </div>
+    <div className="md:w-1/2 mt-12 md:mt-0 flex justify-end">
+      {/* Placeholder para a imagem */}
+      <div className="w-full max-w-md aspect-square bg-[#B5B5B5] rounded-3xl shadow-sm"></div>
+    </div>
+  </section>
+);
+
+const FeatureCard = ({ icon, title, description, benefits }) => (
+  <div className="bg-white p-10 rounded-[2rem] shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] flex flex-col h-full border border-gray-50">
+    <div className="w-12 h-12 rounded-full bg-teal-50 text-teal-700 flex items-center justify-center mb-6">
+      {icon}
+    </div>
+    <h3 className="text-xl font-bold text-gray-900 mb-3">{title}</h3>
+    <p className="text-gray-500 text-sm leading-relaxed mb-8 flex-grow">{description}</p>
+    <ul className="space-y-4 mt-auto">
+      {benefits.map((benefit, idx) => (
+        <li key={idx} className="flex items-start text-gray-600 text-sm font-medium">
+          <CheckCircle className="w-4 h-4 text-teal-600 mr-3 flex-shrink-0 mt-0.5" />
+          <span>{benefit}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+);
+
+const Features = () => (
+  <section className="py-20 px-8 bg-[#F9FAFB] max-w-7xl mx-auto rounded-[3rem] my-8">
+    <div className="text-center mb-16">
+      <h2 className="text-3xl font-bold text-gray-900 mb-4">Um Ecossistema de Confiança</h2>
+      <p className="text-gray-500 max-w-xl mx-auto text-sm">
+        Desenhado para unir quem quer ajudar com quem precisa de apoio, construindo pontes sólidas de impacto.
+      </p>
+    </div>
+    <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+      <FeatureCard 
+        icon={<HandHeart className="w-6 h-6" />}
+        title="Para Doadores"
+        description="Descubra causas alinhadas aos seus valores com facilidade. Realize pagamentos seguros e acompanhe o destino de cada centavo através de relatórios de impacto detalhados e transparência radical."
+        benefits={[
+          "Curadoria rigorosa de ONGs",
+          "Pagamentos criptografados e seguros",
+          "Relatórios de impacto em tempo real"
+        ]}
+      />
+      <FeatureCard 
+        icon={<Users className="w-6 h-6" />}
+        title="Para ONGs"
+        description="Amplie sua visibilidade e simplifique a captação de recursos. Crie um perfil dedicado, conte sua história com dignidade editorial e conecte-se com doadores engajados."
+        benefits={[
+          "Perfil editorial de alto impacto",
+          "Gestão simplificada de doações",
+          "Conexão direta com rede de apoio"
+        ]}
+      />
+    </div>
+  </section>
+);
+
+const Step = ({ number, title, description }) => (
+  <div className="flex flex-col items-center text-center max-w-[280px] relative z-10">
+    <div className="w-14 h-14 rounded-full bg-gray-100 text-teal-800 flex items-center justify-center text-xl font-bold mb-6 shadow-sm border border-white">
+      {number}
+    </div>
+    <h4 className="text-base font-bold text-gray-900 mb-3">{title}</h4>
+    <p className="text-gray-500 text-sm leading-relaxed">{description}</p>
+  </div>
+);
+
+const HowItWorks = () => (
+  <section className="py-24 px-8 bg-white max-w-7xl mx-auto">
+    <div className="text-center mb-20">
+      <h2 className="text-3xl font-bold text-gray-900 mb-4">Como Funciona</h2>
+      <p className="text-gray-500 text-sm">Três passos simples para transformar empatia em ação concreta.</p>
+    </div>
+    <div className="flex flex-col md:flex-row justify-center items-start gap-12 md:gap-8 relative max-w-5xl mx-auto">
+      <div className="hidden md:block absolute top-7 left-[15%] right-[15%] h-[2px] bg-gray-100 -z-0"></div>
+      
+      <Step 
+        number="1"
+        title="Doe para o fundo de apoio"
+        description="Sua contribuição vai para um fundo gerenciado por nós. Assim, podemos direcionar os recursos com mais estratégia e continuidade."
+      />
+      <Step 
+        number="2"
+        title="Gestão e alocação responsável"
+        description="Analisamos cada ONG, sua transparência e impacto. Gerimos o dinheiro das doações para liberar quando e onde houver maior necessidade e confiança."
+      />
+      <Step 
+        number="3"
+        title="Fale com a equipe"
+        description="Você não escolhe diretamente a ONG, mas pode sugerir causas, regiões ou organizações que conhece. Sua opinião orienta nossa decisão."
+      />
+    </div>
+  </section>
+);
+
+const CTA = () => (
+  <section className="px-8 pb-24 max-w-6xl mx-auto">
+    <div className="bg-[#147B72] rounded-[2.5rem] p-12 md:p-16 text-center text-white flex flex-col items-center shadow-lg">
+      <h2 className="text-3xl md:text-4xl font-bold mb-4">Pronto para fazer a diferença?</h2>
+      <p className="text-teal-100 max-w-xl mb-10 text-base md:text-lg">
+        Junte-se à nossa comunidade de doadores e comece a apoiar causas que transformam vidas hoje mesmo.
+      </p>
+      <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
+        <button className="bg-white text-teal-800 font-semibold px-8 py-3.5 rounded-full hover:bg-gray-50 transition shadow-sm w-full sm:w-auto">
+          Doar Agora
+        </button>
+        <button className="bg-transparent border border-white/80 text-white font-semibold px-8 py-3.5 rounded-full hover:bg-white/10 transition w-full sm:w-auto">
+          Explorar ONGs
+        </button>
+      </div>
+    </div>
+  </section>
+);
+
+export default function LandingPage() {
+  return (
+    <div className="min-h-screen bg-white font-sans text-gray-900 selection:bg-teal-100 selection:text-teal-900">
+      <Navbar />
+      <main>
+        <Hero />
+        <Features />
+        <HowItWorks />
+        <CTA />
+      </main>
+    </div>
+  );
+}

@@ -1,5 +1,6 @@
 import { CheckCircle, Users, HandHeart, ArrowRight } from 'lucide-react';
 import Navbar from './components/Navbar';
+import imagemGenerica from './assets/imagem_generica.jpg';
 
 const landingNavLinks = [
   { label: 'Nossa Missão', href: '#', active: true },
@@ -27,8 +28,11 @@ const Hero = () => (
       </div>
     </div>
     <div className="md:w-1/2 mt-12 md:mt-0 flex justify-end">
-      {/* Placeholder para a imagem */}
-      <div className="w-full max-w-md aspect-square bg-[#B5B5B5] rounded-3xl shadow-sm"></div>
+      <img
+        src={imagemGenerica}
+        alt="Pessoas unidas em apoio"
+        className="w-full max-w-md aspect-square object-cover rounded-3xl shadow-sm"
+      />
     </div>
   </section>
 );

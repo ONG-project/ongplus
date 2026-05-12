@@ -1,18 +1,13 @@
-import React from 'react';
 import { CheckCircle, Users, HandHeart, ArrowRight } from 'lucide-react';
+import Navbar from './components/Navbar';
+import imagemGenerica from './assets/imagem_generica.jpg';
 
-const Navbar = () => (
-  <nav className="flex justify-between items-center py-6 px-8 md:px-16 bg-white">
-    <div className="text-2xl font-bold text-teal-800 tracking-tight">ONG<span className="text-teal-600">+</span></div>
-    <div className="hidden md:flex space-x-10 text-gray-500 font-medium text-sm">
-      <a href="#" className="text-gray-900 border-b-2 border-teal-700 pb-1">Nossa Missão</a>
-      <a href="#" className="hover:text-teal-700 transition">Causas</a>
-      <a href="#" className="hover:text-teal-700 transition">Transparência</a>
-      <a href="#" className="hover:text-teal-700 transition">Sobre</a>
-    </div>
-    <div className="md:hidden text-teal-800 font-bold">Menu</div>
-  </nav>
-);
+const landingNavLinks = [
+  { label: 'Nossa Missão', href: '#', active: true },
+  { label: 'Causas', href: '#' },
+  { label: 'Transparência', href: '#' },
+  { label: 'Sobre', href: '#' },
+];
 
 const Hero = () => (
   <section className="flex flex-col md:flex-row items-center justify-between px-8 md:px-16 py-16 md:py-20 bg-white max-w-7xl mx-auto">
@@ -33,8 +28,11 @@ const Hero = () => (
       </div>
     </div>
     <div className="md:w-1/2 mt-12 md:mt-0 flex justify-end">
-      {/* Placeholder para a imagem */}
-      <div className="w-full max-w-md aspect-square bg-[#B5B5B5] rounded-3xl shadow-sm"></div>
+      <img
+        src={imagemGenerica}
+        alt="Pessoas unidas em apoio"
+        className="w-full max-w-md aspect-square object-cover rounded-3xl shadow-sm"
+      />
     </div>
   </section>
 );
@@ -150,7 +148,7 @@ const CTA = () => (
 export default function LandingPage() {
   return (
     <div className="min-h-screen bg-white font-sans text-gray-900 selection:bg-teal-100 selection:text-teal-900">
-      <Navbar />
+      <Navbar links={landingNavLinks} />
       <main>
         <Hero />
         <Features />

@@ -1,6 +1,7 @@
 import LandingPage from './Pages/LandingPage'
 import RegisterPage from './Pages/RegisterPage'
 import TransparencyPage from './Pages/TransparencyPage'
+import AboutPage from './Pages/AboutPage'
 import Navbar from './components/Navbar'
 import { User } from 'lucide-react'
 import { useState } from 'react'
@@ -10,7 +11,6 @@ function App() {
 
   const navLinks = [
     { label: 'Explorar', id: 'landing' },
-    { label: 'Causas', id: 'causas' },
     { label: 'Transparência', id: 'transparency' },
     { label: 'Sobre', id: 'sobre' },
   ]
@@ -44,6 +44,7 @@ function App() {
       {activePage === 'landing' && <LandingPage />}
       {activePage === 'register' && <RegisterPage />}
       {activePage === 'transparency' && <TransparencyPage />}
+      {activePage === 'sobre' && <AboutPage />}
     </div>
   )
 }

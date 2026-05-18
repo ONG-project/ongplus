@@ -1,5 +1,6 @@
 import LandingPage from './Pages/LandingPage'
 import RegisterPage from './Pages/RegisterPage'
+import LoginPage from './Pages/LoginPage'
 import TransparencyPage from './Pages/TransparencyPage'
 import AboutPage from './Pages/AboutPage'
 import Navbar from './components/Navbar'
@@ -42,7 +43,8 @@ function App() {
       />
 
       {activePage === 'landing' && <LandingPage />}
-      {activePage === 'register' && <RegisterPage />}
+      {activePage === 'register' && <RegisterPage onLoginClick={() => setActivePage('login')} />}
+      {activePage === 'login' && <LoginPage onRegisterClick={() => setActivePage('register')} />}
       {activePage === 'transparency' && <TransparencyPage />}
       {activePage === 'sobre' && <AboutPage />}
     </div>

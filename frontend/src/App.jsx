@@ -2,6 +2,7 @@ import LandingPage from './Pages/LandingPage'
 import RegisterPage from './Pages/RegisterPage'
 import TransparencyPage from './Pages/TransparencyPage'
 import AboutPage from './Pages/AboutPage'
+import DonationPage from './Pages/DonationPage'
 import Navbar from './components/Navbar'
 import { User } from 'lucide-react'
 import { useState } from 'react'
@@ -17,7 +18,10 @@ function App() {
 
   const rightContent = (
     <div className="flex items-center space-x-4">
-      <button className="bg-teal-800 text-white px-5 py-2 rounded-full font-medium text-sm hover:bg-teal-900 transition shadow-sm">
+      <button 
+        onClick={() => setActivePage('donation')}
+        className="bg-teal-800 text-white px-5 py-2 rounded-full font-medium text-sm hover:bg-teal-900 transition shadow-sm"
+      >
         Doar Agora
       </button>
       <button
@@ -45,6 +49,7 @@ function App() {
       {activePage === 'register' && <RegisterPage />}
       {activePage === 'transparency' && <TransparencyPage />}
       {activePage === 'sobre' && <AboutPage />}
+      {activePage === 'donation' && <DonationPage />}
     </div>
   )
 }

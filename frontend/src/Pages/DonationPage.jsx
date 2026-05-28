@@ -1,0 +1,375 @@
+import { useState } from 'react';
+import { 
+  GraduationCap, 
+  TreeDeciduous, 
+  HeartPulse, 
+  CreditCard, 
+  QrCode, 
+  FileText, 
+  ShieldCheck, 
+  Lock, 
+  ThumbsUp, 
+  Heart,
+  DollarSign
+} from 'lucide-react';
+import amaraStoryBg from '../assets/amara_story.png';
+
+export default function DonationPage() {
+  const [selectedAmount, setSelectedAmount] = useState(50);
+  const [customAmount, setCustomAmount] = useState('');
+  const [selectedCause, setSelectedCause] = useState('Educação para o Futuro');
+  const [paymentMethod, setPaymentMethod] = useState('Cartão');
+  
+  // Card input fields
+  const [cardNumber, setCardNumber] = useState('');
+  const [cardExpiry, setCardExpiry] = useState('');
+  const [cardCvv, setCardCvv] = useState('');
+
+  const displayAmount = customAmount ? parseFloat(customAmount) || 0 : selectedAmount;
+
+  const handleAmountSelect = (amount) => {
+    setSelectedAmount(amount);
+    setCustomAmount('');
+  };
+
+  const handleCustomAmountChange = (e) => {
+    const val = e.target.value;
+    if (val === '' || /^\d*$/.test(val)) {
+      setCustomAmount(val);
+      setSelectedAmount(0);
+    }
+  };
+
+  const causesList = [
+    {
+      id: 'Educação para o Futuro',
+      title: 'Educação para o Futuro',
+      description: 'Alfabetização e treinamento em comunidades carentes.',
+      icon: GraduationCap,
+    },
+    {
+      id: 'Preservação Ambiental',
+      title: 'Preservação Ambiental',
+      description: 'Reflorestamento, proteção de mananciais e fauna silvestre.',
+      icon: TreeDeciduous,
+    },
+    {
+      id: 'Saúde Comunitária',
+      title: 'Saúde Comunitária',
+      description: 'Apoio médico, psicológico e atendimento em clínicas sociais.',
+      icon: HeartPulse,
+    },
+  ];
+
+  return (
+    <div className="flex-grow bg-[#FCFBF9] font-sans py-12 px-6 md:px-12 lg:px-16">
+      <div className="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-[1.3fr_1fr] gap-12 lg:gap-20">
+        
+        {/* Left Column - Steps Form */}
+        <div className="space-y-12">
+          
+          {/* Header/Manifesto */}
+          <div className="space-y-4">
+            <p className="text-[#147B72] font-bold text-xs tracking-widest uppercase">
+              Manifesto de Impacto
+            </p>
+            <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 leading-tight">
+              Transforme sua <br />
+              <span className="relative inline-block text-[#147B72]">
+                intenção
+                <svg className="absolute -bottom-2 left-0 w-full h-2 text-[#147B72]/40" viewBox="0 0 100 10" preserveAspectRatio="none">
+                  <path d="M0,5 Q50,10 100,5" stroke="currentColor" strokeWidth="4" fill="none" strokeLinecap="round" />
+                </svg>
+              </span>{' '}
+              em ação.
+            </h1>
+            <p className="text-gray-600 text-base md:text-lg max-w-[500px] leading-relaxed">
+              Cada doação é uma curadoria de esperança. Escolha onde sua marca no mundo será deixada hoje.
+            </p>
+          </div>
+
+          {/* Step 1 - Escolha o Valor */}
+          <div className="space-y-6">
+            <div className="flex items-center space-x-3">
+              <span className="w-8 h-8 rounded-full bg-[#147B72] text-white flex items-center justify-center font-bold text-sm">
+                01
+              </span>
+              <h2 className="text-xl font-bold text-gray-900">Escolha o Valor</h2>
+            </div>
+
+            {/* Quick Select Buttons */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+              {[
+                { label: 'Mínimo', value: 30 },
+                { label: 'Ideal', value: 50 },
+                { label: 'Impacto', value: 100 },
+                { label: 'Líder', value: 500 }
+              ].map((item) => {
+                const isActive = selectedAmount === item.value && !customAmount;
+                return (
+                  <button
+                    key={item.value}
+                    type="button"
+                    onClick={() => handleAmountSelect(item.value)}
+                    className={`flex flex-col items-center justify-center p-4 rounded-2xl border-2 transition-all ${
+                      isActive 
+                        ? 'bg-[#147B72] border-[#147B72] text-white shadow-md' 
+                        : 'bg-white border-gray-100 hover:border-gray-200 text-gray-800'
+                    }`}
+                  >
+                    <span className={`text-[0.65rem] font-bold uppercase tracking-wider mb-1 ${isActive ? 'text-teal-100' : 'text-gray-400'}`}>
+                      {item.label}
+                    </span>
+                    <span className="text-lg font-extrabold">R$ {item.value}</span>
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Custom Amount */}
+            <div className="relative">
+              <span className="absolute inset-y-0 left-0 flex items-center pl-4 text-gray-400">
+                <DollarSign className="w-5 h-5" />
+              </span>
+              <input
+                type="text"
+                placeholder="Outro valor personalizado"
+                value={customAmount}
+                onChange={handleCustomAmountChange}
+                className="w-full bg-[#F5F3F0] text-gray-800 placeholder-gray-500 rounded-2xl pl-12 pr-4 py-4 focus:outline-none focus:ring-2 focus:ring-[#147B72] transition font-medium"
+              />
+            </div>
+          </div>
+
+          {/* Step 2 - Direcione seu Impacto */}
+          <div className="space-y-6">
+            <div className="flex items-center space-x-3">
+              <span className="w-8 h-8 rounded-full bg-[#147B72] text-white flex items-center justify-center font-bold text-sm">
+                02
+              </span>
+              <h2 className="text-xl font-bold text-gray-900">Direcione seu Impacto</h2>
+            </div>
+            <p className="text-gray-500 text-sm">Qual causa ressoa mais com você agora?</p>
+
+            <div className="space-y-4">
+              {causesList.map((cause) => {
+                const CauseIcon = cause.icon;
+                const isSelected = selectedCause === cause.id;
+                return (
+                  <button
+                    key={cause.id}
+                    type="button"
+                    onClick={() => setSelectedCause(cause.id)}
+                    className={`w-full flex items-start text-left p-5 rounded-2xl border-2 transition-all ${
+                      isSelected 
+                        ? 'bg-white border-[#147B72] shadow-sm' 
+                        : 'bg-white border-transparent hover:border-gray-100'
+                    }`}
+                  >
+                    <div className="flex items-center h-5 mr-4">
+                      <div className={`w-5 h-5 rounded-full border flex items-center justify-center transition-all ${
+                        isSelected ? 'border-[#147B72]' : 'border-gray-300'
+                      }`}>
+                        {isSelected && <div className="w-2.5 h-2.5 rounded-full bg-[#147B72]" />}
+                      </div>
+                    </div>
+                    <div className="flex-grow flex items-start space-x-4">
+                      <div className={`p-2.5 rounded-xl ${isSelected ? 'bg-teal-50 text-[#147B72]' : 'bg-gray-50 text-gray-500'}`}>
+                        <CauseIcon className="w-6 h-6" />
+                      </div>
+                      <div>
+                        <h4 className="font-bold text-gray-900 text-sm">{cause.title}</h4>
+                        <p className="text-gray-500 text-xs mt-1 leading-relaxed">{cause.description}</p>
+                      </div>
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Step 3 - Método de Pagamento */}
+          <div className="space-y-6">
+            <div className="flex items-center space-x-3">
+              <span className="w-8 h-8 rounded-full bg-[#147B72] text-white flex items-center justify-center font-bold text-sm">
+                03
+              </span>
+              <h2 className="text-xl font-bold text-gray-900">Método de Pagamento</h2>
+            </div>
+
+            {/* Payment Selection Tabs */}
+            <div className="flex space-x-4 border-b border-gray-100 pb-2">
+              {[
+                { id: 'PIX', label: 'PIX', icon: QrCode },
+                { id: 'Cartão', label: 'Cartão', icon: CreditCard },
+                { id: 'Boleto', label: 'Boleto', icon: FileText }
+              ].map((method) => {
+                const MethodIcon = method.icon;
+                const isActive = paymentMethod === method.id;
+                return (
+                  <button
+                    key={method.id}
+                    type="button"
+                    onClick={() => setPaymentMethod(method.id)}
+                    className={`flex items-center space-x-2 px-6 py-3 rounded-xl border transition-all font-bold text-sm ${
+                      isActive 
+                        ? 'bg-white border-[#147B72] text-[#147B72] shadow-sm' 
+                        : 'bg-white border-transparent text-gray-500 hover:text-gray-800'
+                    }`}
+                  >
+                    <MethodIcon className="w-4 h-4" />
+                    <span>{method.label}</span>
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Conditional fields */}
+            {paymentMethod === 'Cartão' && (
+              <div className="bg-white p-6 rounded-2xl border border-gray-50 space-y-4">
+                <div className="space-y-2">
+                  <label className="block text-[0.65rem] font-bold text-gray-400 uppercase tracking-wider">Número do Cartão</label>
+                  <input
+                    type="text"
+                    placeholder="0000 0000 0000 0000"
+                    value={cardNumber}
+                    onChange={(e) => setCardNumber(e.target.value)}
+                    className="w-full bg-[#EAE8E3] text-gray-800 placeholder-gray-500 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#147B72] transition"
+                  />
+                </div>
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <label className="block text-[0.65rem] font-bold text-gray-400 uppercase tracking-wider">Validade</label>
+                    <input
+                      type="text"
+                      placeholder="MM/AA"
+                      value={cardExpiry}
+                      onChange={(e) => setCardExpiry(e.target.value)}
+                      className="w-full bg-[#EAE8E3] text-gray-800 placeholder-gray-500 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#147B72] transition"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="block text-[0.65rem] font-bold text-gray-400 uppercase tracking-wider">CVV</label>
+                    <input
+                      type="text"
+                      placeholder="123"
+                      value={cardCvv}
+                      onChange={(e) => setCardCvv(e.target.value)}
+                      className="w-full bg-[#EAE8E3] text-gray-800 placeholder-gray-500 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-[#147B72] transition"
+                    />
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {paymentMethod === 'PIX' && (
+              <div className="bg-white p-6 rounded-2xl border border-gray-50 text-center space-y-3">
+                <QrCode className="w-16 h-16 mx-auto text-gray-300" />
+                <p className="text-gray-600 text-sm">
+                  Um QR Code PIX será gerado na próxima tela para você concluir sua doação.
+                </p>
+              </div>
+            )}
+
+            {paymentMethod === 'Boleto' && (
+              <div className="bg-white p-6 rounded-2xl border border-gray-50 text-center space-y-3">
+                <FileText className="w-16 h-16 mx-auto text-gray-300" />
+                <p className="text-gray-600 text-sm">
+                  Um boleto bancário em PDF será gerado após clicar no botão de finalizar.
+                </p>
+              </div>
+            )}
+          </div>
+
+          {/* Submit Button */}
+          <div className="pt-4">
+            <button 
+              type="button" 
+              className="w-full sm:w-auto bg-[#147B72] hover:bg-teal-800 text-white font-bold px-12 py-4 rounded-full transition shadow-md flex items-center justify-center space-x-2"
+            >
+              <span>Finalizar Doação de R$ {displayAmount}</span>
+              <Heart className="w-4 h-4 fill-white" />
+            </button>
+          </div>
+        </div>
+
+        {/* Right Column - Summaries & Stories */}
+        <div className="space-y-8 lg:sticky lg:top-8 h-fit">
+          
+          {/* Card 1 - Donation Summary */}
+          <div className="bg-white p-8 rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.03)] border border-gray-50 space-y-6">
+            <h3 className="text-lg font-bold text-gray-900 border-b border-gray-100 pb-4">
+              Resumo da Doação
+            </h3>
+            
+            <div className="space-y-4">
+              <div className="flex justify-between items-center text-sm">
+                <span className="text-gray-500 font-medium">Valor Selecionado</span>
+                <span className="text-gray-900 font-bold">R$ {displayAmount},00</span>
+              </div>
+              <div className="flex justify-between items-center text-sm">
+                <span className="text-gray-500 font-medium">Causa</span>
+                <span className="text-gray-900 font-bold text-right max-w-[200px] truncate">{selectedCause}</span>
+              </div>
+              <div className="flex justify-between items-center text-sm">
+                <span className="text-gray-500 font-medium">Taxas Operacionais</span>
+                <span className="text-teal-700 font-bold text-xs uppercase tracking-wider">Cobertas pelo Impacto</span>
+              </div>
+            </div>
+
+            {/* Score box */}
+            <div className="bg-[#F5F9F8] p-5 rounded-2xl space-y-2 border border-teal-50">
+              <div className="flex items-center space-x-2 text-teal-800">
+                <ShieldCheck className="w-5 h-5 text-teal-600" />
+                <span className="text-xs font-bold uppercase tracking-wider">Transparência</span>
+              </div>
+              <div className="text-teal-900 font-extrabold text-sm">
+                SCORE 9.8/10
+              </div>
+              <p className="text-gray-600 text-xs leading-relaxed">
+                Auditado pela Transparência Brasil. 100% dos recursos são aplicados diretamente no projeto escolhido.
+              </p>
+            </div>
+
+            {/* Certifications badges */}
+            <div className="grid grid-cols-3 gap-2 pt-2 text-center border-t border-gray-100">
+              <div className="flex flex-col items-center space-y-1">
+                <ShieldCheck className="w-5 h-5 text-gray-400" />
+                <span className="text-[0.6rem] font-bold text-gray-500 tracking-tight uppercase">SSL Seguro</span>
+              </div>
+              <div className="flex flex-col items-center space-y-1">
+                <Lock className="w-5 h-5 text-gray-400" />
+                <span className="text-[0.6rem] font-bold text-gray-500 tracking-tight uppercase">Dados Cripto</span>
+              </div>
+              <div className="flex flex-col items-center space-y-1">
+                <ThumbsUp className="w-5 h-5 text-gray-400" />
+                <span className="text-[0.6rem] font-bold text-gray-500 tracking-tight uppercase">Impacto Real</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Card 2 - Story Card */}
+          <div 
+            className="relative rounded-[2rem] overflow-hidden aspect-[4/3] flex flex-col justify-end p-8 bg-cover bg-center shadow-md"
+            style={{ backgroundImage: `url(${amaraStoryBg})` }}
+          >
+            {/* Dark gradient overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+            
+            <div className="relative z-10 text-white space-y-2">
+              <h4 className="text-lg font-bold">Conheça a história de Amara.</h4>
+              <p className="text-xs text-gray-200 leading-relaxed max-w-[280px]">
+                Como uma doação de R$ 30 mudou o destino de uma aldeia inteira na Angola.
+              </p>
+              <a href="#" className="inline-block text-xs font-bold text-orange-200 hover:text-orange-300 transition-colors pt-2">
+                Ler Reportagem ➔
+              </a>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  );
+}

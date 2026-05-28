@@ -53,7 +53,7 @@ function App() {
       {activePage === 'login' && <LoginPage onRegisterClick={() => setActivePage('register')} />}
       {activePage === 'transparency' && <TransparencyPage />}
       {activePage === 'sobre' && <AboutPage />}
-      {activePage === 'donation' && <DonationPage />}
+      {activePage === 'donation' && <DonationPage onGoHome={() => setActivePage('landing')} />}
       {activePage === 'relief-core' && <UrgencyRequestPage />}
     </div>
   )

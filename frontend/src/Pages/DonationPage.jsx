@@ -14,7 +14,9 @@ import {
 } from 'lucide-react';
 import amaraStoryBg from '../assets/amara_story.png';
 
-export default function DonationPage() {
+export default function DonationPage({ onGoHome }) {
+  const [donationStep, setDonationStep] = useState(1); // 1 = Form, 3 = Confirmation
+  const [frequency, setFrequency] = useState('Mensal'); // 'Única', 'Mensal'
   const [selectedAmount, setSelectedAmount] = useState(50);
   const [customAmount, setCustomAmount] = useState('');
   const [selectedCause, setSelectedCause] = useState('Educação para o Futuro');
@@ -61,6 +63,93 @@ export default function DonationPage() {
     },
   ];
 
+  // Success Step 3 UI
+  if (donationStep === 3) {
+    return (
+      <div className="flex-grow bg-[#FAF8F5] font-sans flex flex-col items-center justify-center py-16 px-6">
+        {/* Step Indicator */}
+        <div className="text-center mb-8 space-y-2">
+          <p className="text-[#147B72] font-bold text-xs tracking-widest uppercase">
+            Passo 3 de 3
+          </p>
+          <div className="flex items-center justify-center space-x-1.5">
+            <div className="w-2.5 h-2.5 rounded-full bg-gray-200" />
+            <div className="w-2.5 h-2.5 rounded-full bg-gray-200" />
+            <div className="w-8 h-2 rounded-full bg-[#147B72]" />
+          </div>
+        </div>
+
+        {/* Success Card */}
+        <div className="bg-white max-w-xl w-full rounded-[2.5rem] p-12 text-center shadow-[0_8px_30px_rgb(0,0,0,0.02)] border border-gray-100">
+          {/* Green Circle with Heart */}
+          <div className="w-20 h-20 bg-[#DDF3E8] rounded-full flex items-center justify-center mx-auto text-[#0A665C]">
+            <Heart className="w-8 h-8 fill-[#0A665C] text-[#0A665C]" />
+          </div>
+
+          <h2 className="text-3xl font-extrabold text-gray-900 mt-8 leading-tight">
+            Obrigado por seu apoio!
+          </h2>
+          <p className="text-gray-500 mt-4 text-sm leading-relaxed max-w-sm mx-auto">
+            Sua generosidade ecoa. Recebemos sua doação com imensa gratidão. Juntos, estamos transformando narrativas em impacto tangível.
+          </p>
+
+          {/* Receipt Card */}
+          <div className="bg-[#FAF8F5] p-6 rounded-2xl mt-8 space-y-4 border border-gray-100 text-left">
+            <h3 className="font-bold text-gray-900 text-sm">
+              Resumo da Doação
+            </h3>
+            <div className="space-y-3 pt-2 text-sm border-t border-gray-100">
+              <div className="flex justify-between items-center">
+                <span className="text-gray-500 font-medium">Causa Apoiada</span>
+                <span className="text-gray-900 font-bold">{selectedCause}</span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-gray-500 font-medium">Valor Confirmado</span>
+                <span className="text-[#0A665C] font-extrabold text-lg">R$ {displayAmount},00</span>
+              </div>
+              <div className="flex justify-between items-center">
+                <span className="text-gray-500 font-medium">Frequência</span>
+                <span className="text-gray-900 font-bold">{frequency}</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Action Buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 mt-8 justify-center">
+            <button
+              onClick={() => {
+                setDonationStep(1);
+                if (onGoHome) {
+                  onGoHome();
+                }
+              }}
+              className="bg-[#0A665C] hover:bg-[#08524a] text-white font-bold py-3.5 px-8 rounded-full transition-colors flex items-center justify-center space-x-2 shadow-sm text-sm cursor-pointer"
+            >
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+              </svg>
+              <span>Voltar ao Início</span>
+            </button>
+            <button
+              type="button"
+              className="bg-[#EAE8E3] hover:bg-gray-200 text-gray-800 font-bold py-3.5 px-8 rounded-full transition-colors flex items-center justify-center space-x-2 text-sm cursor-pointer"
+            >
+              <svg className="w-4 h-4 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M8.684 10.742l8.977-4.489m0 0l-8.977-4.49M17.66 6.253a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0zM8.684 13.258l8.977 4.49m0 0l-8.977 4.49m8.977-4.49a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0zm-13.48-3.5a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z" />
+              </svg>
+              <span>Compartilhar</span>
+            </button>
+          </div>
+        </div>
+
+        {/* Footer text */}
+        <p className="text-center text-[11px] text-gray-400 mt-6 max-w-sm leading-relaxed">
+          Um recibo detalhado foi enviado para o seu e-mail. Para dúvidas, contate-nos através do nosso canal de suporte.
+        </p>
+      </div>
+    );
+  }
+
   return (
     <div className="flex-grow bg-[#FCFBF9] font-sans py-12 px-6 md:px-12 lg:px-16">
       <div className="max-w-[1200px] mx-auto grid grid-cols-1 lg:grid-cols-[1.3fr_1fr] gap-12 lg:gap-20">
@@ -94,7 +183,7 @@ export default function DonationPage() {
               <span className="w-8 h-8 rounded-full bg-[#147B72] text-white flex items-center justify-center font-bold text-sm">
                 01
               </span>
-              <h2 className="text-xl font-bold text-gray-900">Escolha o Valor</h2>
+              <h2 className="text-xl font-bold text-gray-900">Escolha o Valor & Frequência</h2>
             </div>
 
             {/* Quick Select Buttons */}
@@ -139,6 +228,32 @@ export default function DonationPage() {
                 className="w-full bg-[#F5F3F0] text-gray-800 placeholder-gray-500 rounded-2xl pl-12 pr-4 py-4 focus:outline-none focus:ring-2 focus:ring-[#147B72] transition font-medium"
               />
             </div>
+
+            {/* Frequency Options */}
+            <div className="flex space-x-3 pt-2">
+              <button
+                type="button"
+                onClick={() => setFrequency('Única')}
+                className={`px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider border transition-all ${
+                  frequency === 'Única'
+                    ? 'bg-[#147B72] border-[#147B72] text-white shadow-sm'
+                    : 'bg-white border-gray-200 text-gray-600 hover:border-gray-300'
+                }`}
+              >
+                Doação Única
+              </button>
+              <button
+                type="button"
+                onClick={() => setFrequency('Mensal')}
+                className={`px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider border transition-all ${
+                  frequency === 'Mensal'
+                    ? 'bg-[#147B72] border-[#147B72] text-white shadow-sm'
+                    : 'bg-white border-gray-200 text-gray-600 hover:border-gray-300'
+                }`}
+              >
+                Doação Mensal
+              </button>
+            </div>
           </div>
 
           {/* Step 2 - Direcione seu Impacto */}
@@ -169,7 +284,7 @@ export default function DonationPage() {
                     <div className="flex items-center h-5 mr-4">
                       <div className={`w-5 h-5 rounded-full border flex items-center justify-center transition-all ${
                         isSelected ? 'border-[#147B72]' : 'border-gray-300'
-                      }`}>
+                       }`}>
                         {isSelected && <div className="w-2.5 h-2.5 rounded-full bg-[#147B72]" />}
                       </div>
                     </div>
@@ -285,7 +400,8 @@ export default function DonationPage() {
           <div className="pt-4">
             <button 
               type="button" 
-              className="w-full sm:w-auto bg-[#147B72] hover:bg-teal-800 text-white font-bold px-12 py-4 rounded-full transition shadow-md flex items-center justify-center space-x-2"
+              onClick={() => setDonationStep(3)}
+              className="w-full sm:w-auto bg-[#147B72] hover:bg-teal-800 text-white font-bold px-12 py-4 rounded-full transition shadow-md flex items-center justify-center space-x-2 cursor-pointer"
             >
               <span>Finalizar Doação de R$ {displayAmount}</span>
               <Heart className="w-4 h-4 fill-white" />

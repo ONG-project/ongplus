@@ -4,6 +4,7 @@ import LoginPage from './Pages/LoginPage'
 import TransparencyPage from './Pages/TransparencyPage'
 import AboutPage from './Pages/AboutPage'
 import DonationPage from './Pages/DonationPage'
+import UrgencyRequestPage from './Pages/UrgencyRequestPage'
 import Navbar from './components/Navbar'
 import { User } from 'lucide-react'
 import { useState } from 'react'
@@ -15,6 +16,7 @@ function App() {
     { label: 'Explorar', id: 'landing' },
     { label: 'Transparência', id: 'transparency' },
     { label: 'Sobre', id: 'sobre' },
+    { label: 'Portal ReliefCore', id: 'relief-core' },
   ]
 
   const rightContent = (
@@ -52,6 +54,7 @@ function App() {
       {activePage === 'transparency' && <TransparencyPage />}
       {activePage === 'sobre' && <AboutPage />}
       {activePage === 'donation' && <DonationPage />}
+      {activePage === 'relief-core' && <UrgencyRequestPage />}
     </div>
   )
 }

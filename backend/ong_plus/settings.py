@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 
 from pathlib import Path
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -40,11 +41,11 @@ INSTALLED_APPS = [
     # Bibliotecas de terceiros
     'corsheaders',
     # Aplicativos locais (Monolito Modular)
-    'apps.ai_assistant',
-    'apps.authentication',
-    'apps.financial',
-    'apps.transparency',
-    'apps.verification',
+    'ai_assistant',
+    'authentication',
+    'financial',
+    'transparency',
+    'verification',
 ]
 
 MIDDLEWARE = [
@@ -88,8 +89,12 @@ WSGI_APPLICATION = 'ong_plus.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': config('DB_NAME'),
+        'USER': config('DB_USER'),
+        'PASSWORD': config('DB_PASSWORD'),
+        'HOST': config('DB_HOST'),
+        'PORT': config('DB_PORT'),
     }
 }
 

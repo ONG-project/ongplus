@@ -1,24 +1,34 @@
-# Logs
-logs
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
-
-node_modules
-dist
-dist-ssr
-*.local
-
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-.idea
+# Sistema Operacional / IDEs
 .DS_Store
+Thumbs.db
+.idea/
+.vscode/
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
+
+# Ambientes Virtuais Python
+.venv/
+venv/
+ENV/
+env/
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Node / Frontend
+node_modules/
+dist/
+build/
+.env
+.env.*.local
+!.env.example
+
+# Banco de dados local SQLite
+*.sqlite3
+db.sqlite3
+
+# Arquivos temporários do Gemini / Antigravity
+scratch/

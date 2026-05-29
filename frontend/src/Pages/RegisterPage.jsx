@@ -1,7 +1,7 @@
 import { TreeDeciduous, GraduationCap, ShieldPlus, Users, Mail } from 'lucide-react';
 import imagemGenerica from '../assets/imagem_generica.jpg';
 
-export default function RegisterPage() {
+export default function RegisterPage({ onLoginClick }) {
   return (
     <div className="flex-grow bg-[#FCFBF9] font-sans flex items-center justify-center p-6 md:p-12">
       <div className="max-w-[1100px] w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
@@ -106,7 +106,7 @@ export default function RegisterPage() {
 
             {/* Login Link */}
             <p className="text-center text-sm text-gray-600 mt-6 pt-2">
-              Já tem uma conta? <a href="#" className="text-[#147B72] font-bold hover:underline">Faça login</a>
+              Já tem uma conta? <button type="button" onClick={onLoginClick} className="text-[#147B72] font-bold hover:underline focus:outline-none">Faça login</button>
             </p>
           </form>
         </div>

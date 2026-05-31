@@ -6,6 +6,7 @@ import AboutPage from './Pages/AboutPage'
 import DonationPage from './Pages/DonationPage'
 import UrgencyRequestPage from './Pages/UrgencyRequestPage'
 import NgoManagementPage from './Pages/NgoManagementPage'
+import CausesPage from './Pages/CausesPage'
 import Navbar from './components/Navbar'
 import { User } from 'lucide-react'
 import { useState } from 'react'
@@ -14,7 +15,8 @@ function App() {
   const [activePage, setActivePage] = useState('landing')
 
   const navLinks = [
-    { label: 'Explorar', id: 'landing' },
+    { label: 'Nossa Missão', id: 'landing' },
+    { label: 'Causas', id: 'causas' },
     { label: 'Transparência', id: 'transparency' },
     { label: 'Sobre', id: 'sobre' },
     { label: 'Portal ReliefCore', id: 'relief-core' },
@@ -50,14 +52,15 @@ function App() {
         className="border-b border-gray-50"
       />
 
-      {activePage === 'landing' && <LandingPage onNavigate={setActivePage} />}
+      {activePage === 'landing' && <LandingPage onExploreCauses={() => setActivePage('causas')} />}
       {activePage === 'register' && <RegisterPage onLoginClick={() => setActivePage('login')} />}
       {activePage === 'login' && <LoginPage onRegisterClick={() => setActivePage('register')} />}
-      {activePage === 'transparency' && <TransparencyPage onNavigate={setActivePage} />}
-      {activePage === 'sobre' && <AboutPage onNavigate={setActivePage} />}
+      {activePage === 'transparency' && <TransparencyPage />}
+      {activePage === 'sobre' && <AboutPage />}
       {activePage === 'donation' && <DonationPage onGoHome={() => setActivePage('landing')} />}
       {activePage === 'relief-core' && <UrgencyRequestPage />}
-      {activePage === 'gestao-ong' && <NgoManagementPage onNavigate={setActivePage} />}
+      {activePage === 'gestao-ong' && <NgoManagementPage />}
+      {activePage === 'causas' && <CausesPage onNavigate={setActivePage} />}
     </div>
   )
 }

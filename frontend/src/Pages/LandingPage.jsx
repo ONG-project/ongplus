@@ -1,5 +1,6 @@
 import { CheckCircle, Users, HandHeart, ArrowRight } from 'lucide-react';
 import imagemGenerica from '../assets/imagem_generica.jpg';
+import Footer from '../components/Footer';
 
 const Hero = () => (
   <section className="flex flex-col md:flex-row items-center justify-between px-8 md:px-16 py-16 md:py-20 bg-white max-w-7xl mx-auto">
@@ -137,7 +138,7 @@ const CTA = () => (
   </section>
 );
 
-export default function LandingPage() {
+export default function LandingPage({ onNavigate }) {
   return (
     <>
       <main className="flex-grow">
@@ -146,6 +147,7 @@ export default function LandingPage() {
         <HowItWorks />
         <CTA />
       </main>
+      <Footer onNavigate={onNavigate} />
     </>
   );
 }

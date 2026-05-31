@@ -50,14 +50,14 @@ function App() {
         className="border-b border-gray-50"
       />
 
-      {activePage === 'landing' && <LandingPage />}
+      {activePage === 'landing' && <LandingPage onNavigate={setActivePage} />}
       {activePage === 'register' && <RegisterPage onLoginClick={() => setActivePage('login')} />}
       {activePage === 'login' && <LoginPage onRegisterClick={() => setActivePage('register')} />}
-      {activePage === 'transparency' && <TransparencyPage />}
-      {activePage === 'sobre' && <AboutPage />}
+      {activePage === 'transparency' && <TransparencyPage onNavigate={setActivePage} />}
+      {activePage === 'sobre' && <AboutPage onNavigate={setActivePage} />}
       {activePage === 'donation' && <DonationPage onGoHome={() => setActivePage('landing')} />}
       {activePage === 'relief-core' && <UrgencyRequestPage />}
-      {activePage === 'gestao-ong' && <NgoManagementPage />}
+      {activePage === 'gestao-ong' && <NgoManagementPage onNavigate={setActivePage} />}
     </div>
   )
 }

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { 
-  Leaf, 
   UploadCloud, 
   ChevronRight, 
   ChevronLeft,
@@ -18,8 +17,9 @@ import {
 } from 'lucide-react';
 import verdeUrbeGarden from '../assets/verde_urbe_garden.png';
 import reflorestaSeedling from '../assets/refloresta_seedling.png';
+import Footer from '../components/Footer';
 
-export default function NgoManagementPage() {
+export default function NgoManagementPage({ onNavigate }) {
   const [activeSubTab, setActiveSubTab] = useState('visao-geral'); // 'visao-geral', 'campanhas', 'doadores', 'relatorios'
   
   // Doadores tab states
@@ -882,43 +882,7 @@ export default function NgoManagementPage() {
 
       </main>
 
-      {/* Footer Section */}
-      <footer className="bg-[#FAF8F5] border-t border-[#E5E2D9] py-16 px-12 mt-12">
-        <div className="max-w-7xl w-full mx-auto grid grid-cols-1 md:grid-cols-[2fr_1fr_1fr] gap-12">
-          {/* Brand & description */}
-          <div className="space-y-4">
-            <div className="flex items-center space-x-2 text-[#0A665C]">
-              <Leaf className="w-6 h-6 fill-[#0A665C]/10" />
-              <span className="font-bold text-lg tracking-tight">ONG+</span>
-            </div>
-            <p className="text-[#646A63] text-xs leading-relaxed max-w-sm">
-              © 2024 ONG+. Conectando gestores de impacto a doadores conscientes através de dados validados e transparência radical.
-            </p>
-          </div>
-
-          {/* Links Column 1: Gestão */}
-          <div className="space-y-4">
-            <h4 className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">
-              Gestão
-            </h4>
-            <ul className="space-y-2.5 text-xs font-semibold text-gray-600">
-              <li><a href="#" className="hover:text-[#0A665C] transition-colors">Suporte ao Gestor</a></li>
-              <li><a href="#" className="hover:text-[#0A665C] transition-colors">Guias de Captação</a></li>
-            </ul>
-          </div>
-
-          {/* Links Column 2: Privacidade */}
-          <div className="space-y-4">
-            <h4 className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">
-              Privacidade
-            </h4>
-            <ul className="space-y-2.5 text-xs font-semibold text-gray-600">
-              <li><a href="#" className="hover:text-[#0A665C] transition-colors">LGPD e Doadores</a></li>
-              <li><a href="#" className="hover:text-[#0A665C] transition-colors">Termos de Uso</a></li>
-            </ul>
-          </div>
-        </div>
-      </footer>
+      <Footer onNavigate={onNavigate} />
 
     </div>
   );

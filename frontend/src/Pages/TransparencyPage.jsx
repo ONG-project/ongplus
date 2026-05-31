@@ -1,5 +1,6 @@
 import { Banknote, HandCoins, Building2, FileText, ShieldCheck, ChevronDown } from 'lucide-react';
 import imagemGenerica from '../assets/imagem_generica.jpg';
+import Footer from '../components/Footer';
 
 
 
@@ -182,64 +183,8 @@ const EmergencyFund = () => (
   </section>
 );
 
-const Footer = () => (
-  <footer className="bg-[#EBE9E4] pt-16 pb-8 px-8 md:px-16 mt-auto">
-    <div className="max-w-7xl mx-auto">
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-16">
-        <div className="col-span-1 md:col-span-1">
-          <div className="text-xl font-bold text-teal-800 tracking-tight mb-4">
-            ONG<span className="text-teal-600">+</span>
-          </div>
-          <p className="text-gray-600 text-xs leading-relaxed max-w-[200px]">
-            Transformando a cultura de doação no país. Conectando pessoas e ONGs com transparência absoluta.
-          </p>
-        </div>
 
-        <div>
-          <h4 className="font-bold text-gray-900 text-sm mb-4">Explorar</h4>
-          <ul className="space-y-3">
-            <li><a href="#" className="text-gray-600 hover:text-teal-700 text-xs transition">Projetos Ativos</a></li>
-            <li><a href="#" className="text-gray-600 hover:text-teal-700 text-xs transition">Como Funciona</a></li>
-            <li><a href="#" className="text-gray-600 hover:text-teal-700 text-xs transition">Blog de Impacto</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <h4 className="font-bold text-gray-900 text-sm mb-4">Transparência</h4>
-          <ul className="space-y-3">
-            <li><a href="#" className="text-gray-600 hover:text-teal-700 text-xs transition">Relatórios Anuais</a></li>
-            <li><a href="#" className="text-gray-600 hover:text-teal-700 text-xs transition">Dados Abertos</a></li>
-            <li><a href="#" className="text-gray-600 hover:text-teal-700 text-xs transition">Termos de Uso</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <h4 className="font-bold text-gray-900 text-sm mb-4">Contato</h4>
-          <ul className="space-y-3">
-            <li className="flex items-center space-x-2 text-gray-600 text-xs">
-              <FileText className="w-3 h-3" /> {/* Replace with Mail if wanted */}
-              <span>contato@ongmais.com</span>
-            </li>
-            <li className="flex items-start space-x-2 text-gray-600 text-xs">
-              <Building2 className="w-3 h-3 mt-0.5" /> {/* Replace with MapPin if wanted */}
-              <span>São Paulo, SP - Brasil</span>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <div className="border-t border-gray-300 pt-8 flex flex-col md:flex-row justify-between items-center text-[0.65rem] text-gray-500">
-        <p>&copy; 2023 ONG+. Todos os direitos reservados.</p>
-        <div className="flex space-x-6 mt-4 md:mt-0">
-          <a href="#" className="hover:text-gray-800 transition">Privacidade</a>
-          <a href="#" className="hover:text-gray-800 transition">Cookies</a>
-        </div>
-      </div>
-    </div>
-  </footer>
-);
-
-export default function TransparencyPage() {
+export default function TransparencyPage({ onNavigate }) {
   return (
     <>
       <main className="flex-grow max-w-[1000px] mx-auto w-full px-6 pt-16 md:pt-24">
@@ -258,7 +203,7 @@ export default function TransparencyPage() {
         <EmergencyFund />
       </main>
 
-      <Footer />
+      <Footer onNavigate={onNavigate} />
     </>
   );
 }

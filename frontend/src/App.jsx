@@ -5,6 +5,7 @@ import TransparencyPage from './Pages/TransparencyPage'
 import AboutPage from './Pages/AboutPage'
 import DonationPage from './Pages/DonationPage'
 import UrgencyRequestPage from './Pages/UrgencyRequestPage'
+import NgoManagementPage from './Pages/NgoManagementPage'
 import Navbar from './components/Navbar'
 import { User } from 'lucide-react'
 import { useState } from 'react'
@@ -17,6 +18,7 @@ function App() {
     { label: 'Transparência', id: 'transparency' },
     { label: 'Sobre', id: 'sobre' },
     { label: 'Portal ReliefCore', id: 'relief-core' },
+    { label: 'Gestão ONG', id: 'gestao-ong' },
   ]
 
   const rightContent = (
@@ -55,6 +57,7 @@ function App() {
       {activePage === 'sobre' && <AboutPage />}
       {activePage === 'donation' && <DonationPage onGoHome={() => setActivePage('landing')} />}
       {activePage === 'relief-core' && <UrgencyRequestPage />}
+      {activePage === 'gestao-ong' && <NgoManagementPage />}
     </div>
   )
 }

@@ -2,7 +2,7 @@ import { CheckCircle, Users, HandHeart, ArrowRight } from 'lucide-react';
 import imagemGenerica from '../assets/imagem_generica.jpg';
 import Footer from '../components/Footer';
 
-const Hero = () => (
+const Hero = ({ onExploreCauses }) => (
   <section className="flex flex-col md:flex-row items-center justify-between px-8 md:px-16 py-16 md:py-20 bg-white max-w-7xl mx-auto">
     <div className="md:w-1/2 space-y-6">
       <h1 className="text-5xl md:text-6xl font-extrabold text-gray-900 leading-[1.1] tracking-tight">
@@ -14,7 +14,10 @@ const Hero = () => (
         Uma plataforma curada que facilita doações para ONGs verificadas, garantindo transparência radical e conexão verdadeira com causas que importam.
       </p>
       <div className="pt-4">
-        <button className="flex items-center space-x-2 bg-teal-700 text-white px-6 py-3 rounded-full font-medium hover:bg-teal-800 transition shadow-sm">
+        <button 
+          onClick={onExploreCauses}
+          className="flex items-center space-x-2 bg-teal-700 text-white px-6 py-3 rounded-full font-medium hover:bg-teal-800 transition shadow-sm"
+        >
           <span>Explorar Causas</span>
           <ArrowRight className="w-4 h-4" />
         </button>
@@ -119,7 +122,7 @@ const HowItWorks = () => (
   </section>
 );
 
-const CTA = () => (
+const CTA = ({ onExploreCauses }) => (
   <section className="px-8 pb-24 max-w-6xl mx-auto">
     <div className="bg-[#147B72] rounded-[2.5rem] p-12 md:p-16 text-center text-white flex flex-col items-center shadow-lg">
       <h2 className="text-3xl md:text-4xl font-bold mb-4">Pronto para fazer a diferença?</h2>
@@ -130,7 +133,10 @@ const CTA = () => (
         <button className="bg-white text-teal-800 font-semibold px-8 py-3.5 rounded-full hover:bg-gray-50 transition shadow-sm w-full sm:w-auto">
           Doar Agora
         </button>
-        <button className="bg-transparent border border-white/80 text-white font-semibold px-8 py-3.5 rounded-full hover:bg-white/10 transition w-full sm:w-auto">
+        <button 
+          onClick={onExploreCauses}
+          className="bg-transparent border border-white/80 text-white font-semibold px-8 py-3.5 rounded-full hover:bg-white/10 transition w-full sm:w-auto"
+        >
           Explorar ONGs
         </button>
       </div>
@@ -138,14 +144,14 @@ const CTA = () => (
   </section>
 );
 
-export default function LandingPage({ onNavigate }) {
+export default function LandingPage({ onExploreCauses, onNavigate }) {
   return (
     <>
       <main className="flex-grow">
-        <Hero />
+        <Hero onExploreCauses={onExploreCauses} />
         <Features />
         <HowItWorks />
-        <CTA />
+        <CTA onExploreCauses={onExploreCauses} />
       </main>
       <Footer onNavigate={onNavigate} />
     </>

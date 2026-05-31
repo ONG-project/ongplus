@@ -15,13 +15,14 @@ import {
 const initialOngs = [
   {
     id: 1,
-    name: 'Instituto Terra Verde',
+    name: 'Instituto Rebrota',
     cnpj: '12.345.678/0001-90',
-    description: 'Reflorestamento e educação ambiental em áreas degradadas da Mata Atlântica. Nosso objetivo é restaurar ecossistemas inteiros através do engajamento comunitário.',
+    description: 'Nossa missão é restaurar o equilíbrio ecológico através da biodiversidade urbana. Transformamos espaços cinzas em pulmões vivos, conectando comunidades à regeneração ativa da Floresta Amazônica em perímetros municipais.',
     cause: 'meio-ambiente',
     causeLabel: 'Meio ambiente',
-    score: 98,
-    icon: 'tree'
+    score: 96,
+    icon: 'tree',
+    location: 'Manaus, AM'
   },
   {
     id: 2,
@@ -31,7 +32,8 @@ const initialOngs = [
     cause: 'saude',
     causeLabel: 'Saúde',
     score: 92,
-    icon: 'drop'
+    icon: 'drop',
+    location: 'Santarém, PA'
   },
   {
     id: 3,
@@ -41,7 +43,8 @@ const initialOngs = [
     cause: 'educacao',
     causeLabel: 'Educação',
     score: 88,
-    icon: 'pencil'
+    icon: 'pencil',
+    location: 'São Paulo, SP'
   },
   {
     id: 4,
@@ -51,7 +54,8 @@ const initialOngs = [
     cause: 'direitos-humanos',
     causeLabel: 'Direitos humanos',
     score: 95,
-    icon: 'scale'
+    icon: 'scale',
+    location: 'Rio de Janeiro, RJ'
   }
 ];
 
@@ -219,8 +223,8 @@ export default function CausesPage({ onNavigate }) {
                     </div>
                   </div>
                   <button 
-                    onClick={() => onNavigate && onNavigate('gestao-ong')}
-                    className="text-[#0A665C] hover:text-[#08524a] text-xs font-bold transition hover:underline"
+                    onClick={() => onNavigate && onNavigate('ong-profile', ong)}
+                    className="text-[#0A665C] hover:text-[#08524a] text-xs font-bold transition hover:underline cursor-pointer"
                   >
                     Ver Mais
                   </button>

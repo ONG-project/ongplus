@@ -7,12 +7,22 @@ import DonationPage from './Pages/DonationPage'
 import UrgencyRequestPage from './Pages/UrgencyRequestPage'
 import NgoManagementPage from './Pages/NgoManagementPage'
 import CausesPage from './Pages/CausesPage'
+import NgoProfilePage from './Pages/NgoProfilePage'
 import Navbar from './components/Navbar'
 import { User } from 'lucide-react'
 import { useState } from 'react'
 
 function App() {
   const [activePage, setActivePage] = useState('landing')
+  const [selectedNgo, setSelectedNgo] = useState(null)
+
+  // Handler genérico que aceita dados extras (ex: a ONG selecionada)
+  const handleNavigate = (page, data = null) => {
+    if (page === 'ong-profile' && data) {
+      setSelectedNgo(data)
+    }
+    setActivePage(page)
+  }
 
   const navLinks = [
     { label: 'Nossa Missão', id: 'landing' },
@@ -46,7 +56,7 @@ function App() {
       <Navbar
         links={navLinks}
         activePage={activePage}
-        onNavigate={setActivePage}
+        onNavigate={handleNavigate}
         onBrandClick={() => setActivePage('landing')}
         rightContent={rightContent}
         className="border-b border-gray-50"
@@ -60,7 +70,8 @@ function App() {
       {activePage === 'donation' && <DonationPage onGoHome={() => setActivePage('landing')} />}
       {activePage === 'relief-core' && <UrgencyRequestPage />}
       {activePage === 'gestao-ong' && <NgoManagementPage />}
-      {activePage === 'causas' && <CausesPage onNavigate={setActivePage} />}
+      {activePage === 'causas' && <CausesPage onNavigate={handleNavigate} />}
+      {activePage === 'ong-profile' && <NgoProfilePage ong={selectedNgo} onNavigate={handleNavigate} />}
     </div>
   )
 }
